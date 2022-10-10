@@ -71,18 +71,36 @@ def convert_miles_to_meters(miles):
 
 
 def convert_yards_to_miles(yards):
-    pass
+    """
+    Takes in a float representing yards and converts it to miles
+    """
+    miles = yards / 1760
+
+    return miles
 
 
 def convert_yards_to_meters(yards):
-    pass
+    """
+    Takes in a float representing yards and converts it to yards
+    """
+    meters = yards / 1.094
+
+    return round(meters, 2)
 
 
 def convert_meters_to_miles(meters):
+    """
+    Takes in a float representing meters and converts it to miles
+    """
     miles = meters / 1609.344
 
     return round(miles, 2)
 
 
 def convert_meters_to_yards(meters):
-    pass
+    """
+    Takes in a float representing meters and converts it to yards
+    """
+    yards = meters * 1.094
+
+    return round(yards, 2)

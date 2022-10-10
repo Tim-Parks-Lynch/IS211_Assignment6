@@ -1,6 +1,6 @@
 import unittest
-import conversions
-import conversions_refactored
+from conversions import *
+from conversions_refactored import *
 
 
 class ConversionTestCase(unittest.TestCase):
@@ -47,10 +47,10 @@ class ConversionTestCase(unittest.TestCase):
 
     yards_meters_known_values = (
         (1.00, 0.91),
-        (100.00, 91.44),
-        (50.00, 45.72),
-        (0.50, 0.4572),
-        (25.00, 22.86),
+        (100.04, 91.44),
+        (50.02, 45.72),
+        (0.50, 0.46),
+        (25.01, 22.86),
     )
 
     # Kelvin to Celsius known values
@@ -84,15 +84,15 @@ class ConversionTestCase(unittest.TestCase):
         convert_celsius_to_kelvin should give known result with known input
         """
         for celsius, kelvin in self.celsius_kelvin_known_values:
-            result = conversions.convert_celsius_to_kelvin(celsius)
-            self.assertEqual(kelvin, result)
+            result = convert_celsius_to_kelvin(celsius)
+            self.assertEqual(result, kelvin)
 
     def test_convert_celsius_to_fahrenheit_good_values(self):
         """
         convert_celsius_to_fahrenheit should give known result with known input
         """
         for celsius, fahrenheit in self.celsius_fahrenheit_known_values:
-            result = conversions.convert_celsius_to_fahrenheit(celsius)
+            result = convert_celsius_to_fahrenheit(celsius)
             self.assertEqual(result, fahrenheit)
 
     def test_convert_kelvin_to_celsius_good_values(self):
@@ -101,7 +101,7 @@ class ConversionTestCase(unittest.TestCase):
         """
 
         for kelvin, celsius in self.kelvin_celsius_known_values:
-            result = conversions.convert_kelvin_to_celsius(kelvin)
+            result = convert_kelvin_to_celsius(kelvin)
             self.assertEqual(result, celsius)
 
     def test_convert_kelvin_to_fahrenheit_good_values(self):
@@ -110,106 +110,126 @@ class ConversionTestCase(unittest.TestCase):
         """
 
         for kelvin, fahrenheit in self.kelvin_fahrenheit_known_values:
-            result = conversions.convert_kelvin_to_fahrenheit(kelvin)
+            result = convert_kelvin_to_fahrenheit(kelvin)
             self.assertEqual(result, fahrenheit)
 
     def test_convert_fahrenheit_to_celsius_good_values(self):
         """convert_fahrenheit_to_celsius should give known result with known input"""
 
         for fahrenheit, celsius in self.fahrenheit_celsius_known_values:
-            result = conversions.convert_fahrenheit_to_celsius(fahrenheit)
+            result = convert_fahrenheit_to_celsius(fahrenheit)
             self.assertEqual(result, celsius)
 
     def test_convert_fahrenheit_to_kelvin_good_values(self):
         """convert_fahrenheit_to_kelvin should give known result with known input"""
 
         for fahrenheit, kelvin in self.fahrenheit_kelvin_known_values:
-            result = conversions.convert_fahrenheit_to_kelvin(fahrenheit)
+            result = convert_fahrenheit_to_kelvin(fahrenheit)
             self.assertEqual(result, kelvin)
 
+    # Refactored Code Tests
     def test_convert_refactor_miles_to_yards_good_values(self):
         """tests the refactored code for miles to yards"""
 
         for miles, yards in self.miles_yards_known_values:
-            result = conversions_refactored.convert("Miles", "Yards", miles)
+            result = convert("Miles", "Yards", miles)
             self.assertAlmostEqual(result, yards)
 
-    # def test_convert_refactor_yards_to_miles_good_values(self):
-    #     """tests the refactored code for yards to miles"""
+    def test_convert_refactor_yards_to_miles_good_values(self):
+        """tests the refactored code for yards to miles"""
 
-    #     for yards, miles in self.yards_miles_known_values:
-    #         result = conversions_refactored.convert("Yards", "Miles", yards)
-    #         self.assertAlmostEqual(result, miles)
+        for yards, miles in self.yards_miles_known_values:
+            result = convert("Yards", "Miles", yards)
+            self.assertAlmostEqual(result, miles)
 
     def test_convert_refactor_miles_to_meters_good_values(self):
         """tests the refactored code for miles to meters"""
 
         for miles, meters in self.miles_meters_known_values:
-            result = conversions_refactored.convert("MILES", " meters ", miles)
+            result = convert("MILES", " meters ", miles)
             self.assertAlmostEqual(result, meters)
 
     def test_convert_refactor_meters_to_miles_good_values(self):
         """tests the refactored code for meters to miles"""
 
         for meters, miles in self.meters_miles_known_values:
-            result = conversions_refactored.convert("Meters", "Miles", meters)
+            result = convert("Meters", "Miles", meters)
             self.assertAlmostEqual(result, miles)
 
     def test_convert_refactor_yards_to_meters_good_values(self):
         """tests the refactored code for yards to meters"""
-        pass
+
+        for yards, meters in self.yards_meters_known_values:
+            result = convert("Yards", "Meters", yards)
+            self.assertAlmostEqual(result, meters)
 
     def test_convert_refactor_meters_to_yards_good_values(self):
         """tests the refactored code for meters to yards"""
-        pass
+
+        for meters, yards in self.meters_yards_known_values:
+            result = convert("Meters", "Yards", meters)
+            self.assertAlmostEqual(result, yards)
 
     def test_convert_refactor_celsius_to_kelvin_good_values(self):
         """
-        convert_celsius_to_kelvin should give known result with known input
+        tests the refactored code for celsius to kelvin
         """
+
         for celsius, kelvin in self.celsius_kelvin_known_values:
-            result = conversions.convert_celsius_to_kelvin(celsius)
-            self.assertEqual(kelvin, result)
+            result = convert("Celsius", "kelvin", celsius)
+            self.assertEqual(result, kelvin)
 
     def test_convert_refactor_celsius_to_fahrenheit_good_values(self):
         """
-        convert_celsius_to_fahrenheit should give known result with known input
+        tests the refactored code for celsius to fahrenheit
         """
         for celsius, fahrenheit in self.celsius_fahrenheit_known_values:
-            result = conversions.convert_celsius_to_fahrenheit(celsius)
+            result = convert("celsius", "fahrenheit", celsius)
             self.assertEqual(result, fahrenheit)
 
-    def test_convert_refactor_to_celsius_good_values(self):
+    def test_convert_refactor_kelvin_to_celsius_good_values(self):
         """
-        convert_kelvin_to_celsius should give known result with known input
+        tests the refactored code for kevlin to celsius
         """
 
         for kelvin, celsius in self.kelvin_celsius_known_values:
-            result = conversions.convert_kelvin_to_celsius(kelvin)
+            result = convert("kelvin", "celsius", kelvin)
             self.assertEqual(result, celsius)
 
     def test_convert_refactor_kelvin_to_fahrenheit_good_values(self):
         """
-        convert_kelvin_to_fahrenheit should give known result with known input
+        tests the refactored code for kelvin to fahrenheit
         """
 
         for kelvin, fahrenheit in self.kelvin_fahrenheit_known_values:
-            result = conversions.convert_kelvin_to_fahrenheit(kelvin)
+            result = convert("kelvin", "fahrenheit", kelvin)
             self.assertEqual(result, fahrenheit)
 
     def test_convert_refactor_fahrenheit_to_celsius_good_values(self):
-        """convert_fahrenheit_to_celsius should give known result with known input"""
+        """
+        tests the refactored code for fahrenheit to celsius
+        """
 
         for fahrenheit, celsius in self.fahrenheit_celsius_known_values:
-            result = conversions.convert_fahrenheit_to_celsius(fahrenheit)
+            result = convert("fahrenheit", "celsius", fahrenheit)
             self.assertEqual(result, celsius)
 
     def test_convert_refactor_fahrenheit_to_kelvin_good_values(self):
-        """convert_fahrenheit_to_kelvin should give known result with known input"""
+        """
+        tests the refactored code for fahrenheit to kelvin
+        """
 
         for fahrenheit, kelvin in self.fahrenheit_kelvin_known_values:
-            result = conversions.convert_fahrenheit_to_kelvin(fahrenheit)
+            result = convert("fahrenheit", "kelvin", fahrenheit)
             self.assertEqual(result, kelvin)
+
+    def test_convert_refactor_incorrect_measurement_parameters(self):
+        """
+        tests that converting from temp to distance throws an error
+        """
+        self.assertRaises(
+            ConversionNotPossible, convert, "celsius", "meters", 10
+        )
 
 
 if __name__ == "__main__":
