@@ -50,3 +50,39 @@ def convert_fahrenheit_to_kelvin(fahrenheit):
     kelvin = (fahrenheit + 459.67) * 5 / 9
 
     return round(kelvin, 2)
+
+
+def convert_miles_to_yards(miles):
+    """
+    Takes in a float representing miles and converts it to yards
+    """
+    yards = miles * 1760
+
+    return yards
+
+
+def convert_miles_to_meters(miles):
+    """
+    Takes in a float representing miles and converts it to meters
+    """
+    meters = miles * 1609.344
+
+    return round(meters, 2)
+
+
+def convert_yards_to_miles(yards):
+    pass
+
+
+def convert_yards_to_meters(yards):
+    pass
+
+
+def convert_meters_to_miles(meters):
+    miles = meters / 1609.344
+
+    return round(miles, 2)
+
+
+def convert_meters_to_yards(meters):
+    pass
